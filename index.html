@@ -206,6 +206,7 @@
       .card {
         width: 20rem;
         flex-direction: column;
+        overflow: hidden;
       }
       
       .content {
@@ -274,7 +275,7 @@
         <div class="pop-up">
           <button id="share"><img src="images/icon-share.svg"></button>
           <div class="list-pop-up">
-            <a href="#">
+            <a href="javascript:void(0)" onclick="copyHalaman()" id="copy-link-share">
               <span>SHARE</span>
             </a>
             <a href="#">
@@ -304,6 +305,21 @@
       e.preventDefault();
       listPopUp.classList.toggle("active");
     });
+
+    const copyBtn = document.querySelector("#copy-link-share");
+
+    async function copyHalaman() {
+      const link = window.location.href;
+
+      try {
+        await navigator.clipboard.writeText(link);
+        alert("Link Copied")
+      } catch (err) {
+        alert("Can't copy link")
+      }
+      
+
+    }
   </script>
 </body>
 </html>
